@@ -31,8 +31,9 @@ A more complex example:
     ('Pete', 'Philly', <TagManager>).networth()
     >>> 0
 
-In this example 'result' uses the outcome of the function as the net result
-As we have not added any tags to Pete yet, the count() will be zero.
+In this example 'result' defines to use the outcome of the function 
+itself as the net result. As we have not added any tags to Pete yet, 
+the count() will be zero.
 
 
 Declaring your own Networh logic:
