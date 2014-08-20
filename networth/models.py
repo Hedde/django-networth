@@ -4,13 +4,11 @@ __author__ = 'heddevanderheide'
 from django.db import models
 from django.db.models import Model
 
+# App specific
+from networth.managers import NetworthManager
 
-class NetworthModel(Model):
-    networth = models.IntegerField()
 
-    class Meta:
-        abstract = True
-
+class NetworthMixin(object):
     def _networth(self, commit=False):
         n = 0
 
@@ -51,7 +49,36 @@ class NetworthModel(Model):
                     n += points
 
         if commit:
-            self.networth = n
-            self.save()
+            self._commit(n)
 
         return n
+
+    def _commit(self, n):
+        raise NotImplementedError
+
+
+class NetworthModel(NetworthMixin, Model):
+    networth = models.IntegerField()
+
+    networth_manager = NetworthManager()
+
+    class Meta:
+        abstract = True
+
+    def relative_networth(self):
+        # returns relative networth (percentual) compared to the
+        # highest valued object
+
+        ceiling = self.__class__.networth_manager.ceiling()
+
+        if self.networth:
+            if self.networth == ceiling:
+                return 100
+
+            return int((float(self.networth) / ceiling) * 100)
+
+        return 0
+
+    def _commit(self, n):
+        self.networth = n
+        self.save()
