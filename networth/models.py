@@ -22,7 +22,10 @@ class NetworthModel(Model):
             if callable(values[0]):
                 if values[1] == 'result':
                     n += values[0](v)
+                elif callable(values[1]):
+                    n += values[1](values[0](v))
                 else:
+                    print f
                     n += values[1]
             else:
                 if type(values[0]) == bool and bool(v) == values[0]:
