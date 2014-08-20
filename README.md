@@ -1,6 +1,6 @@
 django-networth
 ===
-*valued instances*
+*Valuate instances of Django Models.*
 
 #### Installation
 
