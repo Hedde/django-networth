@@ -43,7 +43,7 @@ In the penultimate example 'result' defines to use the outcome of the function
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
-#### Calculating relative networth
+##### Calculating relative networth
 
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
     >>> 100
