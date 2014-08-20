@@ -2,6 +2,10 @@ django-networth
 ===
 *valued instances*
 
+#### Installation
+
+    $ pip install django-networth
+
 #### Examples
 
 ##### Using django-taggit
