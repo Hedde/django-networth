@@ -1,4 +1,6 @@
 *.pyc
+*.rdb
 .idea
 dist
 venv
+build
