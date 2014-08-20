@@ -19,16 +19,36 @@ class NetworthModel(Model):
 
             v = getattr(self, f)
 
-            if callable(values[0]):
+            definition, points = values
+            definition_is_callable, points_is_callable = callable(definition), callable(points)
+
+            if definition_is_callable:
+
                 if values[1] == 'result':
-                    n += values[0](v)
+                    n += definition(v)
+
+                elif points_is_callable:
+                    n += points(definition(v))
+
                 else:
-                    n += values[1]
+                    n += points
+
             else:
-                if type(values[0]) == bool and bool(v) == values[0]:
-                    n += values[1]
-                elif v == values[0]:
-                    n += values[1]
+
+                if type(definition) == bool:
+                    if points_is_callable:
+                        n += points(1 if bool(v) == definition else 0)
+                    else:
+                        n += points
+
+                elif points == 'result':
+                    n += v
+
+                elif points_is_callable:
+                    n += points(v)
+
+                else:
+                    n += points
 
         if commit:
             self.networth = n
