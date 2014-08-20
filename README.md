@@ -1,6 +1,10 @@
 django-networth
 ===
-*valued instances*
+*Valuate instances of Django Models.*
+
+#### Installation
+
+    $ pip install django-networth
 
 #### Examples
 
