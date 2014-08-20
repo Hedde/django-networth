@@ -43,12 +43,12 @@ In the penultimate example 'result' defines to use the outcome of the function
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
-Relative networth
+#### Calculating relative networth
 
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
     >>> 100
     
-Relative networth calculates a percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
+Relative networth calculates the percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
 
 
 ##### Declaring your own Networh logic:
