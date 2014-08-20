@@ -4,6 +4,8 @@ django-networth
 
 #### Examples
 
+##### Using django-taggit
+
     class Object(NetworthModel):
         first_name = models.CharField(max_length=25)
         last_name = models.CharField(max_length=75, blank=True, null=True)
@@ -25,18 +27,15 @@ Consider the following pseudo instances:
     >>> 1
     ('Pete', 'Philly').networth()
     >>> 6
-
-A more complex example:
-
     ('Pete', 'Philly', <TagManager>).networth()
     >>> 0
 
-In this example 'result' defines to use the outcome of the function 
+In the last example 'result' defines to use the outcome of the function 
 itself as the net result. As we have not added any tags to Pete yet, 
 the count() will be zero.
 
 
-Declaring your own Networh logic:
+##### Declaring your own Networh logic:
 
     from networth.models import NetworthModel as BaseNetworthModel
 
@@ -45,11 +44,14 @@ Declaring your own Networh logic:
             return super(NetworthModel, self).networth()
             
             
-Celery example
+##### Using celery
 
     # models.py
-
+    
+    from celery import current_app
+    from celery.contrib.methods import task_method
     from networth.models import NetworthModel
+
 
     class Pizza(NetworthModel):
         name = models.CharField(max_length=140, blank=True, null=True)
