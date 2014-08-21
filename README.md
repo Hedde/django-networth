@@ -51,7 +51,7 @@ is used to multiply the result by a factor 2.
 Relative networth calculates the percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
 
 
-##### Declaring your own Networh logic:
+##### Declaring your own Networth logic:
 
     from networth.models import NetworthModel as BaseNetworthModel
 
