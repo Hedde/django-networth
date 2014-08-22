@@ -25,7 +25,8 @@ class NetworthMixin(object):
                     n += points(definition(v))
 
                 else:
-                    n += points
+                    if v:
+                        n += points
 
             else:
 

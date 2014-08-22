@@ -22,7 +22,7 @@ class TestObject(NetworthMixin):
     def __init__(self, **kwargs):
         self.first_name = kwargs.get('first_name', '')
         self.last_name = kwargs.get('last_name', '')
-        self.tags = kwargs.get('tags', '').split(',')
+        self.tags = filter(None, kwargs.get('tags', '').split(','))
 
 
 class TestNetworth(unittest.TestCase):
@@ -44,7 +44,7 @@ class TestNetworth(unittest.TestCase):
         self.assertEqual(self.obj_1.networth(), 1)
 
     def test_obj_2(self):
-        self.assertEqual(self.obj_2.networth(), 7)
+        self.assertEqual(self.obj_2.networth(), 6)
 
     def test_obj_3(self):
         self.assertEqual(self.obj_3.networth(), 8)
