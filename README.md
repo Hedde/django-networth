@@ -37,7 +37,7 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
     >>> 7
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
-    >>> 8
+    >>> 9
 
 In the penultimate example 'result' defines to use the outcome of the function 
 itself as the net result, the last example defines a callable, which in this case
