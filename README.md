@@ -37,21 +37,21 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
     >>> 7
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
-    >>> 8
+    >>> 9
 
 In the penultimate example 'result' defines to use the outcome of the function 
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
-Relative networth
+##### Calculating relative networth
 
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
     >>> 100
     
-Relative networth calculates a percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
+Relative networth calculates the percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
 
 
-##### Declaring your own Networh logic:
+##### Declaring your own Networth logic:
 
     from networth.models import NetworthModel as BaseNetworthModel
 
@@ -85,7 +85,7 @@ Relative networth calculates a percentage of the current object's networth compa
     
         @current_app.task(filter=task_method)
         def _networth(self, commit=False):
-            return super(Lawyer, self)._networth(commit)
+            return super(Pizza, self)._networth(commit)
 
     # views.py
 
