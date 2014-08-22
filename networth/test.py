@@ -24,6 +24,12 @@ class TestObject(NetworthMixin):
         self.last_name = kwargs.get('last_name', '')
         self.tags = filter(None, kwargs.get('tags', '').split(','))
 
+    def add_tag(self, tag):
+        if self.tags:
+            self.tags.append(tag)
+        else:
+            self.tags = [tag]
+
 
 class TestNetworth(unittest.TestCase):
     def setUp(self):
@@ -37,7 +43,7 @@ class TestNetworth(unittest.TestCase):
         self.obj_3 = TestObject(
             first_name='Pete',
             last_name='Philly',
-            tags='foo,bar'
+            tags='foo'
         )
 
     def test_obj_1(self):
@@ -47,4 +53,8 @@ class TestNetworth(unittest.TestCase):
         self.assertEqual(self.obj_2.networth(), 6)
 
     def test_obj_3(self):
+        self.assertEqual(self.obj_3.networth(), 7)
+
+        self.obj_3.add_tag('bar')
+
         self.assertEqual(self.obj_3.networth(), 8)
