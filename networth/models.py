@@ -23,13 +23,16 @@ class NetworthModel(NetworthMixin, models.Model):
 
         ceiling = self.__class__.objects.ceiling()
 
-        if self._networth:
-            if self._networth == ceiling:
-                return 100
+        if ceiling == 0:
+            return 100
+        else:
+            if self._networth:
+                if self._networth == ceiling:
+                    return 100
 
-            return int((float(self._networth) / ceiling) * 100)
+                return int((float(self._networth) / ceiling) * 100)
 
-        return 0
+            return 0
 
     def _commit(self, n):
         self._networth = n
