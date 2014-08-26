@@ -2,4 +2,6 @@
 setup.py
 networth/__init__.py
 networth/managers.py
+networth/mixins.py
 networth/models.py
+networth/unittests.py
