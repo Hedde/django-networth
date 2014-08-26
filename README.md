@@ -2,6 +2,8 @@ django-networth
 ===
 *Valuate instances of Django Models.*
 
+[![Build Status](https://travis-ci.org/Hedde/django-networth.svg?branch=develop)](https://travis-ci.org/Hedde/django-networth)
+
 #### Installation
 
     $ pip install django-networth
@@ -37,14 +39,21 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
     >>> 7
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
-    >>> 8
+    >>> 9
 
 In the penultimate example 'result' defines to use the outcome of the function 
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
+##### Calculating relative networth (requires committing the results)
 
-##### Declaring your own Networh logic:
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
+    >>> 100
+    
+Relative networth calculates the percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
+
+
+##### Declaring your own Networth logic:
 
     from networth.models import NetworthModel as BaseNetworthModel
 
@@ -77,8 +86,8 @@ is used to multiply the result by a factor 2.
             )
     
         @current_app.task(filter=task_method)
-        def _networth(self, commit=False):
-            return super(Lawyer, self)._networth(commit)
+        def networth(self, commit=False):
+            return super(Pizza, self).networth(commit)
 
     # views.py
 
@@ -86,7 +95,7 @@ is used to multiply the result by a factor 2.
         queryset = Pizza.objects.all()
         
         def render_to_response(self, context, **response_kwargs):    
-            self.object._networth.delay(commit=True)
+            self.object.networth.delay(commit=True)
             
             return super(PizzaDetailView, self).render_to_response(context, **response_kwargs)
             

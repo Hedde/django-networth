@@ -7,4 +7,4 @@ from django.db.models import Max
 
 class NetworthManager(models.Manager):
     def ceiling(self):
-        return self.get_queryset().aggregate(Max('networth'))['networth__max']
+        return self.get_queryset().aggregate(Max('_networth'))['_networth__max']
