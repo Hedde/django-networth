@@ -2,10 +2,7 @@ django-networth
 ===
 *Valuate instances of Django Models.*
 
-[![travis status][2]][1]
-
-  [1]: https://travis-ci.org/Hedde/django-networth
-  [2]: https://travis-ci.org/Hedde/django-networth.svg?branch=develop (travis status)
+[![Build Status](https://travis-ci.org/Hedde/django-networth.svg)](https://travis-ci.org/Hedde/django-networth)
 
 #### Installation
 
