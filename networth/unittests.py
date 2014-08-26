@@ -31,7 +31,7 @@ class TestObject(NetworthMixin):
             self.tags = [tag]
 
 
-class TestNetworth(unittest.TestCase):
+class TestNetworthMixin(unittest.TestCase):
     def setUp(self):
         self.obj_1 = TestObject(
             first_name='Pete'

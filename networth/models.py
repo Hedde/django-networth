@@ -1,18 +1,18 @@
 __author__ = 'heddevanderheide'
 
 # Django specific
+from django.conf import settings
 from django.db import models
-from django.db.models import Model
 
 # App specific
 from networth.managers import NetworthManager
 from networth.mixins import NetworthMixin
 
 
-class NetworthModel(NetworthMixin, Model):
-    networth = models.IntegerField()
+class NetworthModel(NetworthMixin, models.Model):
+    __networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 0))
 
-    networth_manager = NetworthManager()
+    objects = NetworthManager()
 
     class Meta:
         abstract = True
@@ -32,5 +32,5 @@ class NetworthModel(NetworthMixin, Model):
         return 0
 
     def _commit(self, n):
-        self.networth = n
+        self.__networth = n
         self.save()
