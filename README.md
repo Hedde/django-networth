@@ -2,6 +2,11 @@ django-networth
 ===
 *Valuate instances of Django Models.*
 
+.. image:: https://travis-ci.org/Hedde/django-networth.svg?branch=develop
+    :alt: status
+    :scale: 100%
+    :target: https://travis-ci.org/Hedde/django-networth
+
 #### Installation
 
     $ pip install django-networth
