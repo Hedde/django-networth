@@ -45,7 +45,7 @@ In the penultimate example 'result' defines to use the outcome of the function
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
-##### Calculating relative networth
+##### Calculating relative networth (requires committing the results)
 
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
     >>> 100
@@ -86,8 +86,8 @@ Relative networth calculates the percentage of the current object's networth com
             )
     
         @current_app.task(filter=task_method)
-        def _networth(self, commit=False):
-            return super(Pizza, self).__networth(commit)
+        def networth(self, commit=False):
+            return super(Pizza, self).networth(commit)
 
     # views.py
 
@@ -95,7 +95,7 @@ Relative networth calculates the percentage of the current object's networth com
         queryset = Pizza.objects.all()
         
         def render_to_response(self, context, **response_kwargs):    
-            self.object.__networth.delay(commit=True)
+            self.object.networth.delay(commit=True)
             
             return super(PizzaDetailView, self).render_to_response(context, **response_kwargs)
             
