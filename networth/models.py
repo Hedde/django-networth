@@ -10,7 +10,7 @@ from networth.mixins import NetworthMixin
 
 
 class NetworthModel(NetworthMixin, models.Model):
-    __networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 0))
+    _networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 0))
 
     objects = NetworthManager()
 
@@ -21,16 +21,16 @@ class NetworthModel(NetworthMixin, models.Model):
         # returns relative networth (percentual) compared to the
         # highest valued object
 
-        ceiling = self.__class__.networth_manager.ceiling()
+        ceiling = self.__class__.objects.ceiling()
 
-        if self.networth:
-            if self.networth == ceiling:
+        if self._networth:
+            if self._networth == ceiling:
                 return 100
 
-            return int((float(self.networth) / ceiling) * 100)
+            return int((float(self._networth) / ceiling) * 100)
 
         return 0
 
     def _commit(self, n):
-        self.__networth = n
+        self._networth = n
         self.save()
