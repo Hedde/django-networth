@@ -16,37 +16,37 @@ class NetworthMixin(object):
 
             v = getattr(self, f)
 
-            definition, points = values
-            definition_is_callable, points_is_callable = callable(definition), callable(points)
+            condition, award = values
+            condition_is_callable, award_is_callable = callable(condition), callable(award)
 
-            if definition_is_callable:
+            if condition_is_callable:
 
                 if values[1] == 'result':
-                    n += definition(v)
+                    n += condition(v)
 
-                elif points_is_callable:
-                    n += points(definition(v))
+                elif award_is_callable:
+                    n += award(condition(v))
 
                 else:
                     if v:
-                        n += points
+                        n += award
 
             else:
 
-                if type(definition) == bool:
-                    if points_is_callable:
-                        n += points(1 if bool(v) == definition else 0)
+                if type(condition) == bool:
+                    if award_is_callable:
+                        n += award(1 if bool(v) == condition else 0)
                     else:
-                        n += points
+                        n += award
 
-                elif points == 'result':
+                elif award == 'result':
                     n += v
 
-                elif points_is_callable:
-                    n += points(v)
+                elif award_is_callable:
+                    n += award(v)
 
                 else:
-                    n += points
+                    n += award
 
         if commit:
             self._commit('_networth', n)
