@@ -5,7 +5,7 @@ django-networth
 #### Description
 
     Adds a '_networth' and '_relative_networth' field to your model
-    which hold information about the instance it's value.
+    which hold information about the instance's 'total value'.
 
 [![Build Status](https://travis-ci.org/Hedde/django-networth.svg?branch=develop)](https://travis-ci.org/Hedde/django-networth)
 
