@@ -37,15 +37,15 @@ django-networth
 Consider the following pseudo instances (first_name, last_name, tags, other_tags,):
 
     ('Pete', None, None, None).networth()
-    >>> 1
+    >>> 2
     ('Pete', 'James', None, None).networth()
-    >>> 1
+    >>> 2
     ('Pete', 'Philly', None, None).networth()
-    >>> 6
-    ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
     >>> 7
+    ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
+    >>> 8
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
-    >>> 9
+    >>> 10
 
 In the penultimate example 'result' defines to use the outcome of the function 
 itself as the net result, the last example defines a callable, which in this case
