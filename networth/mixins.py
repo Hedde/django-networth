@@ -46,9 +46,9 @@ class NetworthMixin(object):
                     n += points
 
         if commit:
-            self._commit(n)
+            self._commit('_networth', n)
 
         return n
 
-    def _commit(self, n):
+    def _commit(self, field, value):
         raise NotImplementedError
