@@ -37,6 +37,13 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     ('Pete', 'Philly', None, None).networth()
     >>> 6
     ('Pete', 'Philly', None, None).networth(commit=True)  # commit to db (self._networth)
+    >>> 1
+    
+The penultimate example returned 1 because by default networth() and relative_networth() 
+return the database value, to force the realtime value use networth(realtime=True) and 
+relative_networth(realtime=True)
+
+    ('Pete', 'Philly', None, None).networth()  # returns 6 because the result has been committed
     >>> 6
     ('Pete', 'Philly', None, None)._networth  # test commit
     >>> 6
