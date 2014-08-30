@@ -7,6 +7,12 @@ django-networth
 #### Installation
 
     $ pip install django-networth
+    
+#### Setup
+
+    1. Add 'networth' to your INSTALLED_APPS
+    2. Optionally change the default networth setting NETWORTH_DEFAULT
+       to a POSTIVE interger (defaults to 1)
 
 #### Examples
 
