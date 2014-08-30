@@ -118,8 +118,8 @@ Relative networth calculates the percentage of the current object's networth com
     from networth.models import NetworthModel as BaseNetworthModel
 
     class NetworthModel(BaseNetworthModel):
-        def networth(self):
-            return super(NetworthModel, self).networth()
+        def networth(self, realtime=False, commit=False):
+            return super(NetworthModel, self).networth(realtime=realtime, commit=commit)
             
             
 ##### Using celery
@@ -146,7 +146,7 @@ Relative networth calculates the percentage of the current object's networth com
             )
     
         @current_app.task(filter=task_method)
-        def networth(self, commit=False):
+        def networth(self, realtime=False, commit=False):
             return super(Pizza, self).networth(commit)
 
     # views.py
