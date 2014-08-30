@@ -10,7 +10,7 @@ from networth.mixins import NetworthMixin
 
 
 class NetworthModel(NetworthMixin, models.Model):
-    _networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 0))
+    _networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 1))
     _relative_networth = models.IntegerField(default=0)
 
     objects = NetworthManager()
@@ -18,25 +18,45 @@ class NetworthModel(NetworthMixin, models.Model):
     class Meta:
         abstract = True
 
-    def relative_networth(self, commit=False):
-        return self.__relative_networth(commit=commit)
+    def get_default_networth(self):
+        return getattr(settings, 'NETWORTH_DEFAULT', 1)
+
+    def networth(self, realtime=False, commit=False):
+        n, rn = self._networth, self.__networth(commit=commit)
+
+        if realtime:
+            return rn
+        return n
+
+    def relative_networth(self, realtime=False, commit=False):
+        n, rn = self._relative_networth, self.__relative_networth(commit=commit)
+
+        if realtime:
+            return rn
+        return n
+
+    def __networth(self, commit=False):
+        return self._NetworthMixin__networth(commit=commit)
 
     def __relative_networth(self, commit=False):
         # returns relative networth (percentual) compared to the
         # highest valued object
 
-        ceiling = self.__class__.objects.ceiling()
+        ceiling = self.__class__.objects.exclude(pk=self.pk).ceiling()
 
-        if ceiling == 0:
+        if ceiling == 1:
             n = 100
         else:
-            if self._networth:
-                if self._networth == ceiling:
-                    n = 100
-                else:
-                    n = int((float(self._networth) / ceiling) * 100)
+            if self._networth == ceiling:
+                n = 100
             else:
-                n = 0
+                n = int((float(self._networth)) / ceiling * 100)
+
+                if n > 100:
+                    # todo signal recalculation for all obj necessary
+                    # because the ceiling increased
+
+                    n = 100
 
         if commit:
             self._commit('_relative_networth', n)

@@ -47,14 +47,14 @@ class TestNetworthMixin(unittest.TestCase):
         )
 
     def test_obj_1(self):
-        self.assertEqual(self.obj_1.networth(), 1)
+        self.assertEqual(self.obj_1.networth(), 2)
 
     def test_obj_2(self):
-        self.assertEqual(self.obj_2.networth(), 6)
+        self.assertEqual(self.obj_2.networth(), 7)
 
     def test_obj_3(self):
-        self.assertEqual(self.obj_3.networth(), 7)
+        self.assertEqual(self.obj_3.networth(), 8)
 
         self.obj_3.add_tag('bar')
 
-        self.assertEqual(self.obj_3.networth(), 8)
+        self.assertEqual(self.obj_3.networth(), 9)
