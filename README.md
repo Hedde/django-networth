@@ -64,7 +64,7 @@ So,
         
         b. the award;
            can be any callable or integer, but MUST return an 
-           interger.
+           integer.
            if the condition is met, this is the return value for 
            the field, in case of a callable it can also work with 
            the result as it is the first argument received.
