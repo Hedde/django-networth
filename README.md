@@ -91,10 +91,12 @@ relative_networth(realtime=True)
     >>> 6
     ('Pete', 'Philly', None, None)._networth  # test commit
     >>> 6
-    ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
+    ('Pete', 'Philly', <TagManager (1 tag)>, None).networth(realtime=True, commit=True)
     >>> 7
-    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth(realtime=True)
     >>> 9
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>)._networth  # I didn't commit !
+    >>> 7
 
 In the penultimate example 'result' defines to use the outcome of the function 
 itself as the net result, the last example defines a callable, which in this case
