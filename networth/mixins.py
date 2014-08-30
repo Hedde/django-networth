@@ -2,11 +2,11 @@ __author__ = 'heddevanderheide'
 
 
 class NetworthMixin(object):
-    def networth(self, realtime=True, commit=False):
-        return self.__networth(commit=commit)
-
     def get_default_networth(self):
         return 1
+
+    def networth(self, realtime=True, commit=False):
+        return self.__networth(commit=commit)
 
     def __networth(self, commit=False):
         n = self.get_default_networth()
