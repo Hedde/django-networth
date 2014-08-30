@@ -147,7 +147,7 @@ Relative networth calculates the percentage of the current object's networth com
     
         @current_app.task(filter=task_method)
         def networth(self, realtime=False, commit=False):
-            return super(Pizza, self).networth(commit)
+            return super(Pizza, self).networth(realtime=realtime, commit=commit)
 
     # views.py
 
