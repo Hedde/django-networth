@@ -2,6 +2,11 @@ django-networth
 ===
 *Valuate instances of Django Models.*
 
+#### Description
+
+    Adds a '_networth' and '_relative_networth' field to your model
+    which hold information about the instance it's value.
+
 [![Build Status](https://travis-ci.org/Hedde/django-networth.svg?branch=develop)](https://travis-ci.org/Hedde/django-networth)
 
 #### Installation
@@ -13,6 +18,12 @@ django-networth
     1. Add 'networth' to your INSTALLED_APPS
     2. Optionally change the default networth setting NETWORTH_DEFAULT
        to a POSTIVE interger (defaults to 1)
+    3. Make your model(s) inherit NetworthModel (see below)
+    4. Create networth rules (see below)
+    5. Run a schemamigration / migrate cycle
+    
+    note: make sure you inherit the NetworthManager also if you're not 
+          using a default manager for your model(s)
 
 #### Examples
 
@@ -33,6 +44,20 @@ django-networth
                 ('tags', (lambda f: f.count(), 'result')),
                 ('other_tags', (lambda f: f.count(), lambda result: result * 2))
             )
+
+So,
+
+    1. Networth.fields holds a tuple with tuples
+    2. The first value of the tuple has to be the field's name
+    3. The second argument must be a tuple with to parts
+    
+        a. part 1 holds the condition on which value is returned
+           it can be a callable or non callable (e.g. a boolean)
+        b. part 2 holds the award if the condition is met. The award
+           can also be callable or non callable
+           
+    note: it's perfectly legit to declare the same field twice
+           
 
 Consider the following pseudo instances (first_name, last_name, tags, other_tags,):
 
