@@ -61,13 +61,14 @@ So,
     
         a. the condition;
            can be any callable or non callable (e.g. a boolean)
+           if callable, receives the instance as its first argument
         
         b. the award;
            can be any callable or integer, but MUST return an 
            integer.
            if the condition is met, this is the return value for 
-           the field, in case of a callable it can also work with 
-           the result as it is the first argument received.
+           the field
+           if callable, receives the result as its first argument
            
     note: it's perfectly legit to declare the same field twice
            
