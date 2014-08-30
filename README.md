@@ -7,6 +7,11 @@ django-networth
 #### Installation
 
     $ pip install django-networth
+    
+#### Setup
+
+    1. add 'networth' to your INSTALLED_APPS
+    2. optionally change the default obj networth by setting NETWORTH_DEFAULT to any POSITIVE integer (defaults to 1)
 
 #### Examples
 
