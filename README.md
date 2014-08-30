@@ -6,6 +6,10 @@ django-networth
 
     Adds a '_networth' and '_relative_networth' field to your model
     which hold information about the instance's 'total value'.
+    
+    note: Does (currently) not support floats, does not support negative
+          values (i.e. penalties)
+    
 
 [![Build Status](https://travis-ci.org/Hedde/django-networth.svg?branch=develop)](https://travis-ci.org/Hedde/django-networth)
 
@@ -49,12 +53,21 @@ So,
 
     1. Networth.fields holds a tuple with tuples
     2. The first value of the tuple has to be the field's name
-    3. The second argument must be a tuple with to parts
+    3. The second argument must be a tuple with two parts
     
-        a. part 1 holds the condition on which value is returned
-           it can be a callable or non callable (e.g. a boolean)
-        b. part 2 holds the award if the condition is met. The award
-           can also be callable or non callable
+        fields = (
+            (field_name, (condition, award)),
+        )
+    
+        a. the condition;
+           can be any callable or non callable (e.g. a boolean)
+        
+        b. the award;
+           can be any callable or integer, but MUST return an 
+           interger.
+           if the condition is met, this is the return value for 
+           the field, in case of a callable it can also work with 
+           the result as it is the first argument received.
            
     note: it's perfectly legit to declare the same field twice
            
