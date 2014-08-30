@@ -36,6 +36,10 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     >>> 1
     ('Pete', 'Philly', None, None).networth()
     >>> 6
+    ('Pete', 'Philly', None, None).networth(commit=True)  # commit to db (self._networth)
+    >>> 6
+    ('Pete', 'Philly', None, None)._networth  # test commit
+    >>> 6
     ('Pete', 'Philly', <TagManager (1 tag)>, None).networth()
     >>> 7
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).networth()
@@ -45,9 +49,11 @@ In the penultimate example 'result' defines to use the outcome of the function
 itself as the net result, the last example defines a callable, which in this case
 is used to multiply the result by a factor 2.
 
-##### Calculating relative networth (requires committing the results)
+##### Calculating relative networth (requires committed networth for objects to have any useful meaning)
 
-    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth()
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth(commit=True)
+    >>> 100
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>)._relative_networth  # test commit
     >>> 100
     
 Relative networth calculates the percentage of the current object's networth compared to the highest valued object known. This can be useful when calculating profile completeness for example.
