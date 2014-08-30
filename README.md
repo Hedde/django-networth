@@ -7,7 +7,7 @@ django-networth
     Adds a '_networth' and '_relative_networth' field to your model
     which hold information about the instance's 'total value'.
     
-    note: Does (currently) not support floats, does not support negative
+    note: (currently) does not support floats, nor supports negative
           values (i.e. penalties)
     
 
@@ -21,7 +21,7 @@ django-networth
 
     1. Add 'networth' to your INSTALLED_APPS
     2. Optionally change the default networth setting NETWORTH_DEFAULT
-       to a POSTIVE interger (defaults to 1)
+       to a POSITIVE interger (defaults to 1)
     3. Make your model(s) inherit NetworthModel (see below)
     4. Create networth rules (see below)
     5. Run a schemamigration / migrate cycle
