@@ -56,6 +56,8 @@ So,
         b. part 2 holds the award if the condition is met. The award
            can also be callable or non callable
            
+    note: it's perfectly legit to declare the same field twice
+           
 
 Consider the following pseudo instances (first_name, last_name, tags, other_tags,):
 
