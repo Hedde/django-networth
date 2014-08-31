@@ -22,7 +22,7 @@ class TestNetworthModel(test.TestCase):
 
     def test_obj_1(self):
         # no commit
-        self.assertEqual(self.obj_1.networth(), 1)
+        self.assertEqual(self.obj_1.networth(realtime=True), 1)
         self.assertEqual(self.obj_1._networth, 1)
 
         # commit
@@ -34,6 +34,7 @@ class TestNetworthModel(test.TestCase):
         self.assertEqual(self.obj_1._relative_networth, 100)
 
     def test_obj_2(self):
+        # no commit
         self.assertEqual(self.obj_2.networth(realtime=True), 2)
         self.assertEqual(self.obj_2._networth, 1)
 
@@ -46,6 +47,7 @@ class TestNetworthModel(test.TestCase):
         self.assertEqual(self.obj_2._relative_networth, 100)
 
     def test_obj_3(self):
+        # no commit
         self.assertEqual(self.obj_3.networth(realtime=True), 3)
         self.assertEqual(self.obj_3._networth, 1)
 
@@ -84,7 +86,7 @@ class TestNetworthModel(test.TestCase):
         self.assertEqual(self.obj_2._relative_networth, 100)
 
         # re-test previous object(s)
-        self.assertEqual(self.obj_1.relative_networth(realtime=False, commit=True), 100)
+        self.assertEqual(self.obj_1.relative_networth(realtime=True, commit=True), 50)
         self.assertEqual(self.obj_1._relative_networth, 50)
 
         # OBJ 3
@@ -98,8 +100,8 @@ class TestNetworthModel(test.TestCase):
         self.assertEqual(self.obj_3._relative_networth, 100)
 
         # re-test previous object(s)
-        self.assertEqual(self.obj_1.relative_networth(realtime=False, commit=True), 50)
+        self.assertEqual(self.obj_1.relative_networth(realtime=True, commit=True), 33)
         self.assertEqual(self.obj_1._relative_networth, 33)
 
-        self.assertEqual(self.obj_2.relative_networth(realtime=False, commit=True), 100)
+        self.assertEqual(self.obj_2.relative_networth(realtime=True, commit=True), 66)
         self.assertEqual(self.obj_2._relative_networth, 66)

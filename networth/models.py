@@ -7,6 +7,7 @@ from django.db import models
 # App specific
 from networth.managers import NetworthManager
 from networth.mixins import NetworthMixin
+from networth.signals import ceiling_increased
 
 
 class NetworthModel(NetworthMixin, models.Model):
@@ -22,18 +23,14 @@ class NetworthModel(NetworthMixin, models.Model):
         return getattr(settings, 'NETWORTH_DEFAULT', 1)
 
     def networth(self, realtime=False, commit=False):
-        n, rn = self._networth, self.__networth(commit=commit)
-
         if realtime:
-            return rn
-        return n
+            return self.__networth(commit=commit)
+        return self._networth
 
     def relative_networth(self, realtime=False, commit=False):
-        n, rn = self._relative_networth, self.__relative_networth(commit=commit)
-
         if realtime:
-            return rn
-        return n
+            return self.__relative_networth(commit=commit)
+        return self._relative_networth
 
     def __networth(self, commit=False):
         return self._NetworthMixin__networth(commit=commit)
@@ -53,8 +50,7 @@ class NetworthModel(NetworthMixin, models.Model):
                 n = int((float(self._networth)) / ceiling * 100)
 
                 if n > 100:
-                    # todo signal recalculation for all obj necessary
-                    # because the ceiling increased
+                    ceiling_increased.connect(self)
 
                     n = 100
 

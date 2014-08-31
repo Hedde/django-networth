@@ -4,4 +4,5 @@ networth/__init__.py
 networth/managers.py
 networth/mixins.py
 networth/models.py
+networth/signals.py
 networth/unittests.py
