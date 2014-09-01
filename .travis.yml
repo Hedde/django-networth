@@ -4,4 +4,5 @@ python:
 install:
  - pip install -r example/requirements.txt
 script:
+ - nosetests networth/unittests.py
  - python example/manage.py test takeaway
