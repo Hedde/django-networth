@@ -81,7 +81,7 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     >>> 1
     ('Pete', 'Philly', None, None).networth()
     >>> 6
-    ('Pete', 'Philly', None, None).networth(commit=True)  # commit to db (self._networth)
+    ('Pete', 'Philly', None, None).networth(realtime=True, commit=True)  # commit to db (self._networth)
     >>> 1
     
 The penultimate example returned 1 because by default networth() and relative_networth() 
@@ -105,7 +105,7 @@ is used to multiply the result by a factor 2.
 
 ##### Calculating relative networth (requires committed networth for objects to have any useful meaning)
 
-    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth(commit=True)
+    ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>).relative_networth(realtime=True, commit=True)
     >>> 100
     ('Pete', 'Philly', <TagManager (1 tag)>, <OtherTagManager (1 tag)>)._relative_networth  # test commit
     >>> 100
@@ -155,7 +155,7 @@ Relative networth calculates the percentage of the current object's networth com
         queryset = Pizza.objects.all()
         
         def render_to_response(self, context, **response_kwargs):    
-            self.object.networth.delay(commit=True)
+            self.object.networth.delay(realtime=True, commit=True)
             
             return super(PizzaDetailView, self).render_to_response(context, **response_kwargs)
             
