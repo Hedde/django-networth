@@ -162,13 +162,3 @@ Relative networth calculates the percentage of the current object's networth com
     # pizza_detail.html
     
     <div>{{ object.networth }}</div>
-    
-##### Signals
-
-    Currently django-networth supports two signals:
-    
-    - ceiling_increased
-    - ceiling_decreased
-    
-    Which are triggered when the highest networth changes.
-
