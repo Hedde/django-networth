@@ -123,3 +123,14 @@ class TestNetworthModel(test.TestCase):
 
         self.assertEqual(self.obj_3.relative_networth(realtime=True, commit=True), 75)
         self.assertEqual(self.obj_3._relative_networth, 75)
+
+        # OBJ 2 DOWNGRADE
+        self.obj_2.toppings.remove(self.topping_2, self.topping_3)
+
+        # commit
+        self.assertEqual(self.obj_2.networth(realtime=True, commit=True), 2)
+        self.assertEqual(self.obj_2._networth, 2)
+
+        # relative
+        self.assertEqual(self.obj_2.relative_networth(realtime=True, commit=True), 66)
+        self.assertEqual(self.obj_2._relative_networth, 66)
