@@ -24,7 +24,10 @@ class NetworthModel(NetworthMixin, models.Model):
 
     def networth(self, realtime=False, commit=False):
         if realtime:
-            ceiling = self.__class__.objects.all().ceiling()
+            qs = self.__class__.objects.all()
+
+            ceiling = qs.ceiling()
+            ceiling_minus_self = qs.exclude(pk=self.pk).ceiling()
 
             h, n = self._networth, self.__networth(commit=commit)
 
@@ -34,12 +37,11 @@ class NetworthModel(NetworthMixin, models.Model):
                         sender=self.__class__,
                         instance=self
                     )
-            elif n < h:
-                if n < ceiling:
-                    ceiling_decreased.send(
-                        sender=self.__class__,
-                        instance=self
-                    )
+            elif h > n > ceiling_minus_self:
+                ceiling_decreased.send(
+                    sender=self.__class__,
+                    instance=self
+                )
 
             return n
         return self._networth
