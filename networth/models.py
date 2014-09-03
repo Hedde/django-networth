@@ -7,7 +7,6 @@ from django.db import models
 # App specific
 from networth.managers import NetworthManager
 from networth.mixins import NetworthMixin
-from networth.signals import ceiling_increased, ceiling_decreased
 
 
 class NetworthModel(NetworthMixin, models.Model):
@@ -24,26 +23,7 @@ class NetworthModel(NetworthMixin, models.Model):
 
     def networth(self, realtime=False, commit=False):
         if realtime:
-            qs = self.__class__.objects.all()
-
-            ceiling = qs.ceiling()
-            ceiling_minus_self = qs.exclude(pk=self.pk).ceiling()
-
-            h, n = self._networth, self.__networth(commit=commit)
-
-            if n > h:
-                if n > ceiling:
-                    ceiling_increased.send(
-                        sender=self.__class__,
-                        instance=self
-                    )
-            elif h > n > ceiling_minus_self:
-                ceiling_decreased.send(
-                    sender=self.__class__,
-                    instance=self
-                )
-
-            return n
+            return self.__networth(commit=commit)
         return self._networth
 
     def relative_networth(self, realtime=False, commit=False):
