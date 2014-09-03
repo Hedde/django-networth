@@ -134,3 +134,14 @@ class TestNetworthModel(test.TestCase):
         # relative
         self.assertEqual(self.obj_2.relative_networth(realtime=True, commit=True), 66)
         self.assertEqual(self.obj_2._relative_networth, 66)
+
+        # re-test previous object(s)
+        self.assertEqual(self.obj_1.networth(realtime=True, commit=True), 1)
+        self.assertEqual(self.obj_1._networth, 1)
+        self.assertEqual(self.obj_3.networth(realtime=True, commit=True), 3)
+        self.assertEqual(self.obj_3._networth, 3)
+
+        self.assertEqual(self.obj_1.relative_networth(realtime=True, commit=True), 33)
+        self.assertEqual(self.obj_1._relative_networth, 33)
+        self.assertEqual(self.obj_3.relative_networth(realtime=True, commit=True), 100)
+        self.assertEqual(self.obj_3._relative_networth, 100)
