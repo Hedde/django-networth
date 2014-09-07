@@ -60,17 +60,18 @@ So,
         )
     
         a. the condition;
-           can be any callable or non callable (e.g. a boolean)
-           if callable, receives the instance as its first argument
+           can be any callable or non callable (e.g. a boolean).
+           if callable, receives the instance as its first argument.
         
         b. the award;
            can be any callable or integer, but MUST return an 
            integer.
-           if the condition is met, this is the return value for 
-           the field
-           if callable, receives the result as its first argument
+           if the condition is met, this represents the field's networth 
+           return value.
+           if callable, receives the condition's result as its first 
+           argument.
            
-    note: it's perfectly legit to declare the same field twice
+    note: it's perfectly legit to declare the same field twice.
            
 
 Consider the following pseudo instances (first_name, last_name, tags, other_tags,):
