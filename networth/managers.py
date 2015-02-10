@@ -14,3 +14,15 @@ class NetworthQuerySet(QuerySet):
 class NetworthManager(models.Manager):
     def get_queryset(self):
         return NetworthQuerySet(self.model, using=self._db)
+
+    def all(self):
+        #: :type: NetworthQuerySet
+        return super(NetworthManager, self).all()
+
+    def filter(self, *args, **kwargs):
+        #: :type: NetworthQuerySet
+        return super(NetworthManager, self).filter(*args, **kwargs)
+
+    def exclude(self, *args, **kwargs):
+        #: :type: NetworthQuerySet
+        return super(NetworthManager, self).exclude(*args, **kwargs)

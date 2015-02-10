@@ -3,6 +3,7 @@ __author__ = 'heddevanderheide'
 # Django specific
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext as _
 
 # App specific
 from networth.managers import NetworthManager
@@ -10,8 +11,10 @@ from networth.mixins import NetworthMixin
 
 
 class NetworthModel(NetworthMixin, models.Model):
-    _networth = models.IntegerField(default=getattr(settings, 'NETWORTH_DEFAULT', 1))
-    _relative_networth = models.IntegerField(default=0)
+    _networth = models.IntegerField(verbose_name=_("Networth"),
+                                    default=getattr(settings, 'NETWORTH_DEFAULT', 1))
+    _relative_networth = models.IntegerField(verbose_name=_("Relative networth"),
+                                             default=0)
 
     objects = NetworthManager()
 
