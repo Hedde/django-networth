@@ -60,17 +60,18 @@ So,
         )
     
         a. the condition;
-           can be any callable or non callable (e.g. a boolean)
-           if callable, receives the instance as its first argument
+           can be any callable or non callable (e.g. a boolean).
+           if callable, receives the instance as its first argument.
         
         b. the award;
            can be any callable or integer, but MUST return an 
            integer.
-           if the condition is met, this is the return value for 
-           the field
-           if callable, receives the result as its first argument
+           if the condition is met, this represents the field's networth 
+           return value.
+           if callable, receives the condition's result as its first 
+           argument.
            
-    note: it's perfectly legit to declare the same field twice
+    note: it's perfectly legit to declare the same field twice.
            
 
 Consider the following pseudo instances (first_name, last_name, tags, other_tags,):
@@ -80,16 +81,14 @@ Consider the following pseudo instances (first_name, last_name, tags, other_tags
     ('Pete', 'James', None, None).networth()
     >>> 1
     ('Pete', 'Philly', None, None).networth()
-    >>> 6
-    ('Pete', 'Philly', None, None).networth(realtime=True, commit=True)  # commit to db (self._networth)
     >>> 1
+    ('Pete', 'Philly', None, None).networth(realtime=True, commit=True)  # commit to db (self._networth)
+    >>> 6
     
 The penultimate example returned 1 because by default networth() and relative_networth() 
 return the database value, to force the realtime value use networth(realtime=True) and 
 relative_networth(realtime=True)
 
-    ('Pete', 'Philly', None, None).networth()  # returns 6 because the result has been committed
-    >>> 6
     ('Pete', 'Philly', None, None)._networth  # test commit
     >>> 6
     ('Pete', 'Philly', <TagManager (1 tag)>, None).networth(realtime=True, commit=True)
