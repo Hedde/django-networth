@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='django-networth',
-    version='1.1',
+    version='1.2',
     packages=['networth'],
     url='https://github.com/Hedde/django-networth',
     license='MIT',
