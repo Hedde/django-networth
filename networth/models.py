@@ -3,7 +3,7 @@ __author__ = 'heddevanderheide'
 # Django specific
 from django.conf import settings
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext as _
 
 # App specific
 from networth.managers import NetworthManager
