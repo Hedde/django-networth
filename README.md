@@ -7,7 +7,12 @@ django-networth
 #### Description
 
     Adds a '_networth' and '_relative_networth' field to your model
-    which hold information about the instance's 'total value'.
+    which hold information about the instance's 'total value'. 
+    
+    note: relative networth is measured against the highest valued
+          current instance. The're two signals to hook into for ceiling
+          increases or decreases that can be used to recalculate every
+          object.
     
     note: (currently) does not support floats, nor supports negative
           values (i.e. penalties)
@@ -72,6 +77,9 @@ So,
            return value.
            if callable, receives the condition's result as its first 
            argument.
+    
+    note: 'result' is a reserved keyword which will simply return the 
+           output of the condition.
            
     note: it's perfectly legit to declare the same field twice.
            
