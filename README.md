@@ -2,7 +2,7 @@ django-networth
 ===
 *Valuate instances of Django Models.*
 
-<iframe src="//player.vimeo.com/video/120032556" width="500" height="313" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/120032556">django-networth use case example</a> from <a href="https://vimeo.com/user37568641">Hedde van der Heide</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<p><a href="https://vimeo.com/120032556">Use case example</a> from <a href="https://vimeo.com/user37568641">Hedde van der Heide</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 
 #### Description
 
